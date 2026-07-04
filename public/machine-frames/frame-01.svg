@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000">
+  <rect width="1600" height="1000" fill="#ffffff"/>
+  <!-- shared ground baseline -->
+  <line x1="60" y1="880" x2="1540" y2="880" stroke="#c7d0de" stroke-width="3"/>
+  <!-- machine silhouette (placeholder) -->
+  <g opacity="0.95">
+    <path d="M 480 450 L 889 597 L 889 703 L 551 574 Z" fill="#f4f6fa" stroke="#3a4a63" stroke-width="3"/>
+    <rect x="674.7" y="526.0" width="613.6" height="354.0" rx="10" fill="#f4f6fa" stroke="#3a4a63" stroke-width="3.5"/>
+    <rect x="705.4" y="797.4" width="354.0" height="82.6" rx="41.3" fill="#f4f6fa" stroke="#3a4a63" stroke-width="3.5"/>
+    <rect x="981.5" y="797.4" width="354.0" height="82.6" rx="41.3" fill="#f4f6fa" stroke="#3a4a63" stroke-width="3.5"/>
+    <circle cx="480.0" cy="450.0" r="354.0" fill="#f4f6fa" stroke="#3a4a63" stroke-width="4"/>
+    <circle cx="480.0" cy="450.0" r="219.5" fill="none" stroke="#c7d0de" stroke-width="3"/>
+    <circle cx="480.0" cy="450.0" r="56.6" fill="#f4f6fa" stroke="#3a4a63" stroke-width="3"/>
+    <rect x="832.9" y="411.1" width="56.6" height="77.9" rx="4" transform="rotate(90.0 861.3 450.0)" fill="#f4f6fa" stroke="#3a4a63" stroke-width="2.5"/>
+<rect x="795.2" y="576.5" width="56.6" height="77.9" rx="4" transform="rotate(115.7 823.5 615.4)" fill="#f4f6fa" stroke="#3a4a63" stroke-width="2.5"/>
+<rect x="689.4" y="709.1" width="56.6" height="77.9" rx="4" transform="rotate(141.4 717.7 748.1)" fill="#f4f6fa" stroke="#3a4a63" stroke-width="2.5"/>
+<rect x="536.5" y="782.8" width="56.6" height="77.9" rx="4" transform="rotate(167.1 564.8 821.7)" fill="#f4f6fa" stroke="#3a4a63" stroke-width="2.5"/>
+<rect x="366.8" y="782.8" width="56.6" height="77.9" rx="4" transform="rotate(192.9 395.2 821.7)" fill="#f4f6fa" stroke="#3a4a63" stroke-width="2.5"/>
+<rect x="214.0" y="709.1" width="56.6" height="77.9" rx="4" transform="rotate(218.6 242.3 748.1)" fill="#f4f6fa" stroke="#3a4a63" stroke-width="2.5"/>
+<rect x="108.2" y="576.5" width="56.6" height="77.9" rx="4" transform="rotate(244.3 136.5 615.4)" fill="#f4f6fa" stroke="#3a4a63" stroke-width="2.5"/>
+<rect x="70.4" y="411.1" width="56.6" height="77.9" rx="4" transform="rotate(270.0 98.7 450.0)" fill="#f4f6fa" stroke="#3a4a63" stroke-width="2.5"/>
+<rect x="108.2" y="245.6" width="56.6" height="77.9" rx="4" transform="rotate(295.7 136.5 284.6)" fill="#f4f6fa" stroke="#3a4a63" stroke-width="2.5"/>
+<rect x="214.0" y="113.0" width="56.6" height="77.9" rx="4" transform="rotate(321.4 242.3 151.9)" fill="#f4f6fa" stroke="#3a4a63" stroke-width="2.5"/>
+<rect x="366.8" y="39.4" width="56.6" height="77.9" rx="4" transform="rotate(347.1 395.2 78.3)" fill="#f4f6fa" stroke="#3a4a63" stroke-width="2.5"/>
+<rect x="536.5" y="39.4" width="56.6" height="77.9" rx="4" transform="rotate(372.9 564.8 78.3)" fill="#f4f6fa" stroke="#3a4a63" stroke-width="2.5"/>
+<rect x="689.4" y="113.0" width="56.6" height="77.9" rx="4" transform="rotate(398.6 717.7 151.9)" fill="#f4f6fa" stroke="#3a4a63" stroke-width="2.5"/>
+<rect x="795.2" y="245.6" width="56.6" height="77.9" rx="4" transform="rotate(424.3 823.5 284.6)" fill="#f4f6fa" stroke="#3a4a63" stroke-width="2.5"/>
+  </g>
+  <!-- placeholder label -->
+  <text x="800.0" y="120" text-anchor="middle" font-family="monospace" font-size="46" fill="#3a4a63" opacity="0.85">FRAME 01 · PLACEHOLDER</text>
+  <text x="800.0" y="170" text-anchor="middle" font-family="monospace" font-size="26" fill="#3a4a63" opacity="0.55">replace with machine render 01</text>
+</svg>
