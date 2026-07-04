@@ -1,0 +1,78 @@
+/* Scoped to the machine-scroll prototype. No branding, no global styles. */
+
+.root {
+  width: 100%;
+}
+
+/* The scroll track: its height defines how much scroll the pinned scene
+   consumes. Set from JS to frames-count * 100vh so each segment gets a
+   full viewport of scroll. */
+.track {
+  position: relative;
+  width: 100%;
+}
+
+/* The pinned viewport that stays fixed while the track scrolls past. */
+.scene {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* Camera container: the shared transform (scale/x/y) is applied here.
+   transform-origin bottom center keeps the machine's ground baseline
+   pinned as the scene scales. */
+.camera {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+
+/* Every frame stacks in the same box, bottom-aligned so all baselines land
+   on the same line. Opacity is crossfaded between adjacent frames. */
+.frame {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 100%;
+  opacity: 0;
+  will-change: opacity;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Shown before scripts/interaction take over, and as the reduced-motion
+   fallback: a single static frame, no transforms. */
+.static .frame {
+  opacity: 0;
+}
+.static .frame:last-child {
+  opacity: 1;
+}
+.static .camera {
+  transform: none !important;
+}
+
+/* Loading state: hold everything hidden until all frames are decoded to
+   avoid flicker on first paint. */
+.loading .frame {
+  opacity: 0 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    height: auto !important;
+  }
+  .scene {
+    height: 100vh;
+  }
+}
