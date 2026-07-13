@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0d0e" />
+    <title>Condeen — Scroll Sequence Prototype</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <section class="hero" aria-label="Condeen industrial scroll story">
+        <div class="stage">
+          <div class="blueprint" aria-hidden="true">
+            <span class="orbit orbit-a"></span>
+            <span class="orbit orbit-b"></span>
+            <span class="axis axis-x"></span>
+            <span class="axis axis-y"></span>
+          </div>
+
+          <header class="nav">
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+              <span class="menu-icon" aria-hidden="true">
+                <i class="menu-icon-line menu-icon-line-a"></i>
+                <i class="menu-icon-line menu-icon-line-b"></i>
+              </span>
+              <span class="menu-label" aria-hidden="true">
+                <span class="menu-label-open">Menu</span>
+                <span class="menu-label-close">Close</span>
+              </span>
+              <span class="sr-only">Open menu</span>
+            </button>
+            <a class="brand" href="#top" aria-label="Condeen home">
+              <img src="./assets/condeen-logo.png" alt="Condeen" />
+            </a>
+            <a class="contact" href="#contact">Get start</a>
+          </header>
+
+          <section class="menu-panel" id="site-menu" aria-hidden="true">
+            <nav class="menu-links" aria-label="Primary navigation">
+              <a class="menu-link menu-link-solutions" href="#solutions">
+                <span class="menu-link-index">01</span>
+                <span class="menu-link-word">Solutions</span>
+              </a>
+              <a class="menu-link menu-link-services" href="#services">
+                <span class="menu-link-index">02</span>
+                <span class="menu-link-word">Services</span>
+              </a>
+              <a class="menu-link menu-link-vision" href="#vision">
+                <span class="menu-link-index">03</span>
+                <span class="menu-link-word">Vision</span>
+              </a>
+            </nav>
+            <div class="menu-meta" aria-hidden="true">
+              <span>Condeen GmbH · Essen</span>
+              <span>Design × Engineering</span>
+            </div>
+          </section>
+
+          <div class="media-frame">
+            <canvas id="sequence" aria-label="Industrial machinery scroll animation"></canvas>
+            <div class="media-wash" aria-hidden="true"></div>
+            <div class="media-vignette" aria-hidden="true"></div>
+          </div>
+
+          <div class="intro-copy">
+            <p class="eyebrow">Integrated engineering solutions</p>
+            <h1>Connecting design<br />&amp; engineering.</h1>
+            <p class="intro-note">Scroll to reveal the full industrial landscape.</p>
+          </div>
+
+          <div class="reveal-copy">
+            <p class="eyebrow">Condeen GmbH · Essen</p>
+            <h2>The synergy of<br />design and engineering.</h2>
+          </div>
+
+          <div class="load-ui" aria-live="polite">
+            <span class="load-label">Loading sequence</span>
+            <span class="load-track"><span class="load-fill"></span></span>
+            <span class="load-value">0%</span>
+          </div>
+
+          <div class="scroll-hint" aria-hidden="true">
+            <span>Scroll to explore</span>
+            <i></i>
+          </div>
+
+          <div class="frame-counter" aria-hidden="true">000 / 149</div>
+        </div>
+      </section>
+
+      <section class="after" id="contact">
+        <p class="eyebrow">Condeen capabilities</p>
+        <h2>Complexity,<br />made coherent.</h2>
+        <div class="capabilities">
+          <span id="solutions">01 / Consulting</span>
+          <span id="services">02 / Product development</span>
+          <span id="vision">03 / Engineering</span>
+        </div>
+      </section>
+    </main>
+
+    <noscript>This prototype requires JavaScript.</noscript>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
