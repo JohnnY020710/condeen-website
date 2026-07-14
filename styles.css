@@ -199,8 +199,135 @@ a {
   visibility: visible;
 }
 
+.engineering-grid {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  color: var(--red);
+  background-image:
+    linear-gradient(rgba(238, 27, 47, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(238, 27, 47, 0.055) 1px, transparent 1px),
+    linear-gradient(rgba(238, 27, 47, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(238, 27, 47, 0.09) 1px, transparent 1px);
+  background-size:
+    4vw 4vw,
+    4vw 4vw,
+    20vw 20vw,
+    20vw 20vw;
+  pointer-events: none;
+}
+
+.engineering-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(238, 27, 47, 0.18) 50%, transparent calc(50% + 0.5px)),
+    linear-gradient(transparent calc(50% - 0.5px), rgba(238, 27, 47, 0.18) 50%, transparent calc(50% + 0.5px));
+}
+
+.engineering-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(238, 27, 47, 0.28) 0 1px, transparent 1px 24px) top / 100% 10px no-repeat,
+    repeating-linear-gradient(90deg, rgba(238, 27, 47, 0.28) 0 1px, transparent 1px 24px) bottom / 100% 10px no-repeat,
+    repeating-linear-gradient(rgba(238, 27, 47, 0.28) 0 1px, transparent 1px 24px) left / 10px 100% no-repeat,
+    repeating-linear-gradient(rgba(238, 27, 47, 0.28) 0 1px, transparent 1px 24px) right / 10px 100% no-repeat;
+}
+
+.engineering-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(72vw, 860px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(238, 27, 47, 0.13);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.engineering-orbit::before,
+.engineering-orbit::after {
+  content: "";
+  position: absolute;
+  background: rgba(238, 27, 47, 0.2);
+}
+
+.engineering-orbit::before {
+  top: 50%;
+  left: -9px;
+  right: -9px;
+  height: 1px;
+}
+
+.engineering-orbit::after {
+  top: -9px;
+  bottom: -9px;
+  left: 50%;
+  width: 1px;
+}
+
+.engineering-crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(238, 27, 47, 0.28);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.engineering-crosshair::before,
+.engineering-crosshair::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: rgba(238, 27, 47, 0.42);
+  transform: translate(-50%, -50%);
+}
+
+.engineering-crosshair::before {
+  width: 30px;
+  height: 1px;
+}
+
+.engineering-crosshair::after {
+  width: 1px;
+  height: 30px;
+}
+
+.engineering-marker {
+  position: absolute;
+  color: rgba(238, 27, 47, 0.52);
+  font: 700 8px/1 monospace;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.engineering-marker-a {
+  top: 12%;
+  left: 3vw;
+}
+
+.engineering-marker-b {
+  right: 3vw;
+  bottom: 9%;
+}
+
+.engineering-marker-c {
+  bottom: 9%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .meaning-copy {
   position: absolute;
+  z-index: 2;
   top: 37%;
   display: flex;
   flex-direction: column;
