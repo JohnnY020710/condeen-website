@@ -77,26 +77,42 @@
     .to([".color-field-red", ".intro"], { opacity: 0, duration: 0.025 }, 0.325)
     .to(".connector", {
       rotation: -3,
+      duration: 0.12,
+      ease: "power3.inOut",
+    }, 0.36)
+    .to(".connector-bar", {
       scaleY: 0.96,
       duration: 0.12,
       ease: "power3.inOut",
     }, 0.36)
     .to(".connector", {
       rotation: -24,
+      duration: 0.14,
+      ease: "power4.inOut",
+    }, 0.46)
+    .to(".connector-bar", {
       scaleY: 0.65,
       duration: 0.14,
       ease: "power4.inOut",
     }, 0.46)
     .to(".connector", {
       rotation: -68,
+      duration: 0.15,
+      ease: "power4.inOut",
+    }, 0.56)
+    .to(".connector-bar", {
       scaleY: 0.42,
       duration: 0.15,
       ease: "power4.inOut",
     }, 0.56)
     .to(".connector", {
       rotation: -90,
+      y: -42,
+      duration: 0.13,
+      ease: "power4.inOut",
+    }, 0.66)
+    .to(".connector-bar", {
       scaleY: 0.38,
-      y: "-6.5vh",
       backgroundColor: "#ee1b2f",
       duration: 0.13,
       ease: "power4.inOut",
@@ -113,12 +129,12 @@
       duration: 0.22,
       ease: "power3.inOut",
     }, 0.72)
-    .to(".connector", {
+    .to(".connector-bar", {
       scaleY: 0.14,
       duration: 0.16,
       ease: "power3.inOut",
     }, 0.72)
-    .to(".connector", {
+    .to(".connector-bar", {
       scaleY: 0.012,
       duration: 0.1,
       ease: "power3.inOut",
