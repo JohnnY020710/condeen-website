@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#070909" />
+    <title>Condeen — 3D Interaction V1</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  </head>
+  <body>
+    <main class="experience">
+      <header class="site-header">
+        <img class="brand" src="./assets/condeen-logo.png" alt="Condeen" />
+      </header>
+
+      <div class="scene-shell" aria-label="Interactive Condeen 3D model">
+        <canvas id="scene"></canvas>
+        <div class="scene-glow" aria-hidden="true"></div>
+      </div>
+
+      <div
+        class="flip-display"
+        id="flip-display"
+        role="img"
+        aria-label="CONNECTING"
+        aria-hidden="true"
+      >
+        <div class="flip-stage" id="flip-stage" aria-hidden="true"></div>
+      </div>
+
+      <div class="loading" id="loading" role="status">
+        <span class="loading-label">LOADING MODEL</span>
+        <span class="loading-track"><span class="loading-progress" id="loading-progress"></span></span>
+        <span class="loading-value" id="loading-value">0%</span>
+      </div>
+
+      <p class="interaction-hint">
+        <span class="hint-building">DRAG TO ORBIT · SCROLL TO ENTER</span>
+        <span class="hint-knot">DRAG TO ORBIT THE KNOT</span>
+      </p>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
