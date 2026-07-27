@@ -1,0 +1,51 @@
+# Dependencies and generated builds
+node_modules/
+.pnp
+.pnp.js
+dist/
+build/
+.next/
+out/
+.cache/
+
+# MotionForge exports
+exports/
+motionforge-*.zip
+motionforge-*.gif
+motionforge-*.svg
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+~$*
+
+# Editor metadata
+.idea/
+.vscode/
+*.code-workspace
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.pem
+.vercel/
+
+# TypeScript-generated metadata
+*.tsbuildinfo
+next-env.d.ts
+
+# Test and coverage output
+coverage/
+.nyc_output/
+playwright-report/
+test-results/

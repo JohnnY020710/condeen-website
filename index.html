@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MotionForge — 3D 动效工作台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="controls.css" />
+  <link rel="stylesheet" href="background-controls.css" />
+  <link rel="stylesheet" href="export-web.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">M</span><span>MotionForge</span><span class="beta">BETA</span></a>
+    <div class="project-name"><span class="status-dot"></span><input value="Untitled composition" aria-label="项目名称" /></div>
+    <div class="top-actions">
+      <button class="btn ghost" id="resetBtn">重置</button>
+      <button class="btn primary" id="exportBtn">导出作品 <span>↗</span></button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="sidebar left-panel">
+      <section class="panel-section import-section">
+        <div class="section-head"><span class="eyebrow">01 / 资源</span><button class="icon-btn" title="清除模型">×</button></div>
+        <label class="dropzone" id="dropzone">
+          <input id="fileInput" type="file" accept=".obj,.fbx" hidden />
+          <span class="upload-icon">↥</span>
+          <strong>拖入 3D 模型</strong>
+          <small>或点击浏览本地文件</small>
+          <span class="formats">OBJ · FBX / 最大 50MB</span>
+        </label>
+        <div class="model-card" id="modelCard">
+          <span class="model-thumb">◇</span>
+          <span><strong id="modelName">示例几何体</strong><small id="modelMeta">程序生成 · 1 个对象</small></span>
+          <span class="check">✓</span>
+        </div>
+        <div class="sub-divider"></div>
+        <div class="section-head compact"><span class="eyebrow">固定背景</span><span class="lock-tag">⌑ LOCKED</span></div>
+        <label class="background-upload" id="backgroundDropzone">
+          <input id="backgroundInput" type="file" accept=".svg,.obj,.fbx" hidden />
+          <span>＋</span><strong>上传 SVG / OBJ / FBX 背景</strong>
+        </label>
+        <div class="background-actions">
+          <button class="mini-action active" id="worldBtn"><span>◉</span> 世界球</button>
+          <button class="mini-action" id="clearBgBtn"><span>×</span> 无背景</button>
+        </div>
+        <div class="background-status"><span class="status-dot"></span><span id="backgroundName">World sphere</span><small>固定场景 · 不参与动效</small></div>
+        <div class="background-controls">
+          <div class="background-control-head"><span>背景偏移 · 相对模型中心</span><button id="resetBgTransform" type="button">重置</button></div>
+          <div class="axis-grid background-axis"><label>X<input id="bgX" type="number" value="0" step="0.1"></label><label>Y<input id="bgY" type="number" value="0" step="0.1"></label><label>Z<input id="bgZ" type="number" value="0" step="0.1"></label></div>
+          <label class="control-range bg-scale"><span>背景大小 <output id="bgScaleOut">1.00</output></span><input id="bgScale" type="range" min="0.1" max="5" value="1" step="0.05"></label>
+          <div class="color-row"><span>背景模型颜色</span><label class="color-picker"><input id="bgColor" type="color" value="#4b5145"><span id="bgColorHex">#4B5145</span></label></div>
+        </div>
+      </section>
+
+      <section class="panel-section">
+        <div class="section-head"><span class="eyebrow">02 / 交互预设</span><button class="icon-btn" id="pauseBtn">Ⅱ</button></div>
+        <div class="preset-grid">
+          <button class="preset active" data-preset="orbit"><span class="preset-icon">⟳</span><strong>悬浮旋转</strong><small>ORBIT</small></button>
+          <button class="preset" data-preset="drag"><span class="preset-icon">↔</span><strong>拖拽位移</strong><small>DRAG</small></button>
+          <button class="preset" data-preset="camera"><span class="preset-icon">⌁</span><strong>环绕运镜</strong><small>CAMERA</small></button>
+          <button class="preset" data-preset="deform"><span class="preset-icon">〰</span><strong>波浪变形</strong><small>DEFORM</small></button>
+        </div>
+      </section>
+
+      <section class="panel-section parameters">
+        <div class="section-head"><span class="eyebrow">03 / 参数</span><button class="icon-btn" id="randomBtn">⌘</button></div>
+        <label><span>旋转速度 <output id="speedOut">0.50</output></span><input id="speed" type="range" min="0" max="2" value="0.5" step="0.01"></label>
+        <label><span>变形强度 <output id="deformOut">0.35</output></span><input id="deform" type="range" min="0" max="1.2" value="0.35" step="0.01"></label>
+        <label><span>相机距离 <output id="zoomOut">5.0</output></span><input id="zoom" type="range" min="2.5" max="10" value="5" step="0.1"></label>
+        <div class="color-row"><span>材质色彩</span><label class="color-picker"><input id="color" type="color" value="#d8ff45"><span id="colorHex">#D8FF45</span></label></div>
+      </section>
+    </aside>
+
+    <section class="stage-wrap">
+      <div class="stage-toolbar">
+        <div class="segmented"><button class="active" data-view="perspective">透视</button><button data-view="front">正面</button><button data-view="top">顶部</button></div>
+        <div class="view-actions"><button id="gridBtn" class="active" title="网格">⌗</button><button id="fitBtn" title="适配画布">⛶</button></div>
+      </div>
+      <div id="stage" class="stage">
+        <div class="stage-badge"><span class="live-dot"></span>LIVE PREVIEW</div>
+        <div class="hint">拖动旋转 · 滚轮缩放 · 右键平移</div>
+        <div class="loading" id="loading"><span></span>正在解析模型...</div>
+      </div>
+      <div class="timeline">
+        <button id="playBtn" class="play">▶</button>
+        <span class="time" id="timecode">00:00.00</span>
+        <div class="track" id="track"><div class="track-fill" id="trackFill"></div><span class="playhead" id="playhead"></span><span class="keyframe k1"></span><span class="keyframe k2"></span><span class="keyframe k3"></span></div>
+        <span class="duration">00:06.00</span>
+        <button class="loop active" id="loopBtn">↻</button>
+      </div>
+    </section>
+
+    <aside class="sidebar right-panel">
+      <section class="panel-section inspector">
+        <div class="section-head"><span class="eyebrow">检查器</span><span class="object-type">MESH</span></div>
+        <div class="transform-group"><h3>变换</h3>
+          <div class="xyz"><label><span class="x">X</span><input id="posX" type="number" value="0" step="0.1"></label><label><span class="y">Y</span><input id="posY" type="number" value="0" step="0.1"></label><label><span class="z">Z</span><input id="posZ" type="number" value="0" step="0.1"></label></div>
+        </div>
+        <div class="transform-group"><h3>缩放</h3><label class="wide-input"><input id="scale" type="number" value="1.00" min="0.1" step="0.05"><span>统一</span></label></div>
+      </section>
+      <section class="panel-section control-module">
+        <div class="section-head"><span class="eyebrow">灯光控制</span><span class="object-type">LIGHT</span></div>
+        <div class="module-presets" id="lightPresets">
+          <button class="module-preset active" data-light="studio">柔光棚</button>
+          <button class="module-preset" data-light="dramatic">戏剧光</button>
+          <button class="module-preset" data-light="neon">霓虹边缘</button>
+        </div>
+        <label class="control-range"><span>主光强度 <output id="lightIntensityOut">3.2</output></span><input id="lightIntensity" type="range" min="0" max="8" value="3.2" step="0.1"></label>
+        <label class="control-range"><span>环境亮度 <output id="ambientOut">1.4</output></span><input id="ambient" type="range" min="0" max="4" value="1.4" step="0.1"></label>
+        <div class="color-row"><span>主光颜色</span><label class="color-picker"><input id="lightColor" type="color" value="#ffffff"><span id="lightColorHex">#FFFFFF</span></label></div>
+        <div class="axis-grid"><label>X<input id="lightX" type="number" value="3" step="0.5"></label><label>Y<input id="lightY" type="number" value="5" step="0.5"></label><label>Z<input id="lightZ" type="number" value="4" step="0.5"></label></div>
+      </section>
+      <section class="panel-section control-module">
+        <div class="section-head"><span class="eyebrow">摄像机控制</span><span class="object-type">LENS</span></div>
+        <div class="module-presets" id="cameraPresets">
+          <button class="module-preset active" data-camera="studio">产品视角</button>
+          <button class="module-preset" data-camera="closeup">微距特写</button>
+        </div>
+        <label class="control-range"><span>焦距 <output id="focalOut">50 mm</output></span><input id="focalLength" type="range" min="18" max="120" value="50" step="1"></label>
+        <label class="control-range"><span>镜头畸变 <output id="distortionOut">0.00</output></span><input id="distortion" type="range" min="-0.45" max="0.45" value="0" step="0.01"></label>
+        <h3 class="mini-title">聚焦位置</h3>
+        <div class="axis-grid focus-grid"><label>X<input id="focusX" type="number" value="0" step="0.1"></label><label>Y<input id="focusY" type="number" value="0" step="0.1"></label><label>Z<input id="focusZ" type="number" value="0" step="0.1"></label></div>
+      </section>
+      <section class="panel-section layers">
+        <div class="section-head"><span class="eyebrow">场景层级</span><button class="icon-btn">＋</button></div>
+        <button class="layer active"><span>◇</span><span><strong id="layerName">Example mesh</strong><small>Mesh</small></span><i>◉</i></button>
+        <button class="layer"><span>⌾</span><span><strong>Key light</strong><small>Directional light</small></span><i>◉</i></button>
+        <button class="layer"><span>⌁</span><span><strong>Camera</strong><small>Perspective</small></span><i>◉</i></button>
+        <button class="layer"><span>▧</span><span><strong id="backgroundLayerName">World sphere</strong><small>Background · Locked</small></span><i>⌑</i></button>
+      </section>
+      <div class="tips"><span>TIP</span><p>选择“波浪变形”后调整强度，可实时获得具有流动感的几何形态。</p></div>
+    </aside>
+  </main>
+
+  <dialog id="exportDialog">
+    <form method="dialog">
+      <div class="dialog-head"><div><span class="eyebrow">EXPORT</span><h2>导出作品</h2></div><button class="dialog-close" value="cancel">×</button></div>
+      <div class="export-options">
+        <button type="button" class="export-option active" data-format="gif"><span>GIF</span><strong>循环动图</strong><small>800 × 800 · 6 秒</small></button>
+        <button type="button" class="export-option" data-format="svg"><span>SVG</span><strong>矢量快照</strong><small>当前视图 · 可编辑</small></button>
+        <button type="button" class="export-option" data-format="web"><span>WEB</span><strong>实时交互包</strong><small>HTML · 可直接嵌入</small></button>
+      </div>
+      <label class="quality"><span>导出质量</span><select id="quality"><option value="1">标准</option><option value="1.5" selected>高清</option><option value="2">超清</option></select></label>
+      <p class="export-note" id="exportNote">GIF 将逐帧记录当前 3D 动效，导出过程可能需要几秒。</p>
+      <button type="button" class="btn primary export-confirm" id="exportConfirm">开始导出 GIF</button>
+    </form>
+  </dialog>
+
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
+  <script src="https://cdn.jsdelivr.net/npm/gif.js.optimized@1.0.1/dist/gif.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
